@@ -37,12 +37,23 @@ try {
       console.log('Installing dependencies...');
       execSync('npm install');
 
-      console.log('Removing useless files');
+      console.log('Cleaning files');
       execSync('npx rimraf ./.git');
-      fs.rmSync(path.join(projectPath, 'generate-app.js'));
+      const filesToDelete = ['generate-app.js', 'package-lock.json', 'package.json'];
+      for (const file of filesToDelete) {
+        fs.rmSync(path.join(projectPath, file));
+      }
 
       console.log('The installation is done, this is ready to use !');
-
+      console.log('\n\n\t _    ______  ___    ____ ')
+      console.log('\t| |  / / __ \\/   |  / __ \\')
+      console.log('\t| | / / /_/ / /| | / /_/ /')
+      console.log('\t| |/ / _, _/ ___ |/ ____/ ')
+      console.log('\t|___/_/ |_/_/  |_/_/      ')
+      console.log('\n\n')
+      console.log('   Vite + React + Adonis + PostgreSQL');
+      console.log('\n\n             by Unkobweb\n\n')
+      console.log('Have a nice dev !');
     } catch (error) {
       console.log(error);
     }
