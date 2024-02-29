@@ -53,6 +53,10 @@ try {
       }
       spinner.succeed('Cleaned up');
 
+      spinner.start('Create .env file based on .env.example...');
+      fs.copyFileSync(path.join(projectPath, 'backend', '.env.example'), path.join(projectPath, 'backend', '.env'));
+      spinner.succeed('.env file created');
+
       console.log('The installation is done, this is ready to use !');
       console.log('\n\n\t _    ______  ___    ____ ')
       console.log('\t| |  / / __ \\/   |  / __ \\')
