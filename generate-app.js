@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const { execSync } = require('child_process');
-const path = require('path');
-const fs = require('fs');
+import { execSync } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import ora from 'ora';
 
 if (process.argv.length < 3) {
     console.log('You have to provide a name to your app.');
@@ -29,20 +30,28 @@ try {
 
   async function main() {
     try {
-      console.log('Downloading files...');
-      execSync(`git clone --depth 1 ${git_repo} ${projectPath}`);
+      const spinner = ora('Downloading files...').start();
+
+      execSync(`git clone --quiet --depth 1 ${git_repo} ${projectPath}`);
+      spinner.succeed('Files downloaded');
 
       process.chdir(projectPath);
 
-      console.log('Installing dependencies...');
-      execSync('npm install');
+      spinner.start('Installing backend dependencies...');
+      execSync('npm install', { cwd: path.join(projectPath, 'backend') });
+      spinner.succeed('Backend dependencies installed');
 
-      console.log('Cleaning files');
+      spinner.start('Installing frontend dependencies...');
+      execSync('npm install', { cwd: path.join(projectPath, 'frontend') });
+      spinner.succeed('Frontend dependencies installed');
+
+      spinner.start('Cleaning up...');
       execSync('npx rimraf ./.git');
       const filesToDelete = ['generate-app.js', 'package-lock.json', 'package.json'];
       for (const file of filesToDelete) {
         fs.rmSync(path.join(projectPath, file));
       }
+      spinner.succeed('Cleaned up');
 
       console.log('The installation is done, this is ready to use !');
       console.log('\n\n\t _    ______  ___    ____ ')
@@ -50,9 +59,9 @@ try {
       console.log('\t| | / / /_/ / /| | / /_/ /')
       console.log('\t| |/ / _, _/ ___ |/ ____/ ')
       console.log('\t|___/_/ |_/_/  |_/_/      ')
-      console.log('\n\n')
+      console.log('\n')
       console.log('   Vite + React + Adonis + PostgreSQL');
-      console.log('\n\n             by Unkobweb\n\n')
+      console.log('\n             by Unkobweb\n')
       console.log('Have a nice dev !');
     } catch (error) {
       console.log(error);
