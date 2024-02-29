@@ -7,10 +7,15 @@
 |
 */
 
+import AuthController from '#controllers/auth_controller'
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
 router.get('/', async () => {
   return {
     hello: 'world',
   }
 })
+
+router.post('/login', [AuthController, 'login'])
+router.get('/user', [AuthController, 'getUser']).use(middleware.auth())
