@@ -4,8 +4,6 @@ import { useQuery } from "@tanstack/react-query"
 export const Dashboard = () => {
     const {data, isLoading, isError} = useQuery({ queryKey: ['user'], queryFn: () => getUser() })    
 
-    console.log({data, isLoading, isError})
-
     return (
         <div className="flex flex-col h-screen w-screen items-center justify-center">
             <h1>Dashboard</h1>

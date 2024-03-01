@@ -1,6 +1,6 @@
 import reactLogo from '../assets/react.svg'
 import adonisjsLogo from '../assets/adonisjs.svg'
-import viteLogo from '/vite.svg'
+import viteLogo from '../assets/vite.svg'
 import postgreSQLLogo from '../assets/postgresql.png'
 import wrapGif from '../assets/wrap.webp'
 import alex from '../assets/alex.jpg'
