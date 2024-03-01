@@ -10,7 +10,7 @@ export const login = async (email: string, password: string) => {
     })
     if (login.type === "bearer") {
         localStorage.setItem(API_TOKEN_KEY, login.value)
-        window.location.href = '/'
+        window.location.href = '/dashboard'
     } else {
         toast("Login error", {
             description: "Please check your email and password",

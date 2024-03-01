@@ -12,7 +12,7 @@ export const LoginPage = () => {
     }
 
     return (
-        <div className="flex flex-col h-screen w-screen text-white bg-gray-800 items-center justify-center">
+        <div className="flex flex-col h-screen w-screen items-center justify-center">
             <div className="flex flex-col gap-2">
                 <h1>Bonjour</h1>
                 <Input type="text" className="bg-gray-600 border-none" onChange={e => setEmail(e.target.value)} value={email} />

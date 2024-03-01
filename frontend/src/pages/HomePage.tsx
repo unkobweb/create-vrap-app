@@ -4,14 +4,14 @@ import viteLogo from '/vite.svg'
 import postgreSQLLogo from '../assets/postgresql.png'
 import wrapGif from '../assets/wrap.webp'
 import alex from '../assets/alex.jpg'
-import { Api } from '@/components/Api'
+import { Api } from '@/components/api'
 import { Github, Twitter } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
 export const HomePage = () => {
   return (
-    <div className='flex flex-row h-screen w-screen text-white bg-gray-800 items-center justify-center'>
+    <div className='flex flex-row h-screen w-screen items-center justify-center'>
         <Link to="/login" className='absolute top-4 right-4'>
           <Button>Go to login</Button>
         </Link>
@@ -46,7 +46,7 @@ export const HomePage = () => {
             <Api />
             <div className='border border-slate-600 rounded-lg flex flex-row'>
             <img src={alex} alt="Photo de moi" className='h-24 rounded-l-lg' />
-            <span className='flex flex-col text-gray-300	 items-start justify-around ml-4'>
+            <span className='flex flex-col text-secondary-foreground items-start justify-around ml-4'>
                 <h2>Created by Alexandre SIEG</h2>
                 <div className='flex flex-row gap-4'>
                 <a className='flex flex-row items-center hover:text-blue-500 transition-colors' href="https://twitter.com/unkobweb" target='_blank'>

@@ -33,5 +33,10 @@ export const fetcher = <T>(...args: Parameters<typeof fetch>): Promise<T> => {
 
   // if code is 401 or 500, throw error
   return fetch(baseUrl + args[0], args[1])
-    .then(res => res.json())
+    .then(res => {
+      if (res.status === 401) {
+        window.location.href = '/login'
+      }
+      return res.json()
+    })
 }
